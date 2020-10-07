@@ -1,0 +1,27 @@
+/* Global styles****** */
+
+.row {
+    display: flex;
+}
+
+.cell {
+    width: 5em;
+    height: 5em;
+}
+
+#row-1, #row-2 {
+    border-bottom: .2em solid black;
+    width: 15em;
+}
+
+#row-3 {
+    width: 15em;
+}
+
+#cell-1, #cell-4, #cell-7 {
+    border-right: .2em solid black;
+}
+
+#cell-2, #cell-5, #cell-8 {
+    border-right: .2em solid black;
+}
