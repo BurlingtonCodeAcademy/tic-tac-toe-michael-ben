@@ -33,14 +33,22 @@ let moveMap = {
 
 playCell.forEach((move) => {
     move.addEventListener('click', () => {  //this function may be moved outside eventually
-        if (currentPlayer === 'x') {
-            move.textContent = playerXToken
-            currentPlayer = 'o'
-            currentStatus.textContent = 'Player O turn'
+        if (move.textContent !== '') {
+            alert('Please select an Empty Cell')
         } else {
-            move.textContent = playerOToken
-            currentPlayer = 'x'
-            currentStatus.textContent = 'Player X turn'
+
+            if (currentPlayer === 'x') {
+
+                move.textContent = playerXToken //drops token
+                currentPlayer = 'o' // change player
+                currentStatus.textContent = 'Player O turn' // displays current player
+                /* mark cell as occupied*/
+            } else {
+                move.textContent = playerOToken
+                currentPlayer = 'x'
+                currentStatus.textContent = 'Player X turn'
+                /* mark cell as occupied*/
+            }
         }
     })
 })
