@@ -1,5 +1,14 @@
 /* Global styles****** */
 
+h1, #status {
+ text-align: center;
+}
+ #board {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
 .row {
     display: flex;
 }
