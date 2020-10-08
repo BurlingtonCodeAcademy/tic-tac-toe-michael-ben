@@ -7,6 +7,9 @@
 .cell {
     width: 5em;
     height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #row-1, #row-2 {
@@ -18,10 +21,10 @@
     width: 15em;
 }
 
-#cell-1, #cell-4, #cell-7 {
+#cell-0, #cell-3, #cell-6 {
     border-right: .2em solid black;
 }
 
-#cell-2, #cell-5, #cell-8 {
+#cell-1, #cell-4, #cell-7 {
     border-right: .2em solid black;
 }
