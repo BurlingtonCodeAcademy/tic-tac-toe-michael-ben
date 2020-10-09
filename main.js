@@ -18,27 +18,78 @@ let currentPlayer = 'x'
 let playerXToken = 'X'
 let playerOToken = 'O'
 
-//let win-1 = []  cells 0, 1, 2
-//let win-2 = []  cells 3, 4, 5
-//let win-3 = []  cells 6, 7, 8
-//let win-4 = []  cells 0, 3, 6
-//let win-5 = []  cells 1, 4, 7
-//let win-6 = []  cells 2, 5, 8
-//let win-7 = []  cells 0, 4, 8
-//let win-8 = []  cells 2, 4, 6
+let win1 = []  /* cells 0, 1, 2 */
+let win2 = []  /* cells 3, 4, 5 */
+let win3 = []  /* cells 6, 7, 8 */
+let win4 = []  /* cells 0, 3, 6 */
+let win5 = []  /* cells 1, 4, 7 */
+let win6 = []  /* cells 2, 5, 8 */
+let win7 = []  /* cells 0, 4, 8 */
+let win8 = []  /* cells 2, 4, 6 */
 
 // Game play logic ********************************
-function checkForWin() {
-    console.log('checkForWin fired')
-    console.log(playCell)
+function checkForWin(player, cell) {
 
+    if (player === 'x') {
+        arrayValue = 1
+    } else {
+        arrayValue = 2
+    }
 
+    if (cell === 'cell-0') {
+        win1.push(arrayValue)
+        win4.push(arrayValue)
+        win7.push(arrayValue)
+    } else if (cell === 'cell-1') {
+        win1.push(arrayValue)
+        win5.push(arrayValue)
+    } else if (cell === 'cell-2') {
+        win1.push(arrayValue)
+        win6.push(arrayValue)
+        win8.push(arrayValue)
+    }
+    else if (cell === 'cell-3') {
+        win2.push(arrayValue)
+        win4.push(arrayValue)
+    }
+    else if (cell === 'cell-4') {
+        win2.push(arrayValue)
+        win5.push(arrayValue)
+        win7.push(arrayValue)
+        win8.push(arrayValue)
+    }
+    else if (cell === 'cell-5') {
+        win2.push(arrayValue)
+        win6.push(arrayValue)
+    }
+    else if (cell === 'cell-6') {
+        win3.push(arrayValue)
+        win4.push(arrayValue)
+        win8.push(arrayValue)
+    }
+    else if (cell === 'cell-7') {
+        win3.push(arrayValue)
+        win5.push(arrayValue)
+    }
+    else if (cell === 'cell-8') {
+        win3.push(arrayValue)
+        win6.push(arrayValue)
+        win7.push(arrayValue)
+    }
+    console.log('1 - ' + win1)
+    console.log('2 - ' + win2)
+    console.log('3 - ' + win3)
+    console.log('4 - ' + win4)
+    console.log('5 - ' + win5)
+    console.log('6 - ' + win6)
+    console.log('7 - ' + win7)
+    console.log('8 - ' + win8)
 }
 
 
 startButton.addEventListener('click', function () {
     startButton.style.display = 'none'
-currentStatus.style.display = 'block'
+    currentStatus.style.display = 'block'
     currentStatus.textContent = 'Player X: GO!'
 
     playCell.forEach((move) => {
@@ -47,17 +98,24 @@ currentStatus.style.display = 'block'
                 alert('Please select an Empty Cell')
             } else {
                 if (currentPlayer === 'x') {
+                    checkForWin(currentPlayer, move.id)
                     move.textContent = playerXToken //drops token
                     currentPlayer = 'o' // change player
                     currentStatus.textContent = "Player O: GO!" // displays current player
                 } else {
+                    checkForWin(currentPlayer, move.id)
                     move.textContent = playerOToken
                     currentPlayer = 'x'
                     currentStatus.textContent = "Player X: GO!"
                 }
             }
+            // console.log(currentPlayer, move.id)
+
+
+
+
         })
-        checkForWin()
+
     })
 })
 
