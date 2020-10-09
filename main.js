@@ -40,6 +40,25 @@ function checkForWin(player, cell) {
         win1.push(arrayValue)
         win4.push(arrayValue)
         win7.push(arrayValue)
+
+
+
+        let total1 = (win1.reduce(function (arrayTotal, nextNum) {
+            return arrayTotal + nextNum
+        }, 0
+        ))
+        let length1 = (win1.length)
+
+        if (length1 === 3 && total1 % 3 === 0) {
+            if (win1[0] === 1) {
+                console.log(' X WINS')
+            } else {
+                console.log('O WINS')
+            }
+        }
+
+
+
     } else if (cell === 'cell-1') {
         win1.push(arrayValue)
         win5.push(arrayValue)
@@ -47,43 +66,43 @@ function checkForWin(player, cell) {
         win1.push(arrayValue)
         win6.push(arrayValue)
         win8.push(arrayValue)
-    }
-    else if (cell === 'cell-3') {
+    } else if (cell === 'cell-3') {
         win2.push(arrayValue)
         win4.push(arrayValue)
-    }
-    else if (cell === 'cell-4') {
+    } else if (cell === 'cell-4') {
         win2.push(arrayValue)
         win5.push(arrayValue)
         win7.push(arrayValue)
         win8.push(arrayValue)
-    }
-    else if (cell === 'cell-5') {
+    } else if (cell === 'cell-5') {
         win2.push(arrayValue)
         win6.push(arrayValue)
-    }
-    else if (cell === 'cell-6') {
+    } else if (cell === 'cell-6') {
         win3.push(arrayValue)
         win4.push(arrayValue)
         win8.push(arrayValue)
-    }
-    else if (cell === 'cell-7') {
+    } else if (cell === 'cell-7') {
         win3.push(arrayValue)
         win5.push(arrayValue)
-    }
-    else if (cell === 'cell-8') {
+    } else if (cell === 'cell-8') {
         win3.push(arrayValue)
         win6.push(arrayValue)
         win7.push(arrayValue)
     }
-    console.log('1 - ' + win1)
-    console.log('2 - ' + win2)
-    console.log('3 - ' + win3)
-    console.log('4 - ' + win4)
-    console.log('5 - ' + win5)
-    console.log('6 - ' + win6)
-    console.log('7 - ' + win7)
-    console.log('8 - ' + win8)
+
+
+
+
+
+
+    // console.log('1 - ' + win1)
+    // console.log('2 - ' + win2)
+    // console.log('3 - ' + win3)
+    // console.log('4 - ' + win4)
+    // console.log('5 - ' + win5)
+    // console.log('6 - ' + win6)
+    // console.log('7 - ' + win7)
+    // console.log('8 - ' + win8)
 }
 
 
