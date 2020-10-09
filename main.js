@@ -38,7 +38,8 @@ function checkForWin() {
 
 startButton.addEventListener('click', function () {
     startButton.style.display = 'none'
-    currentStatus.textContent = 'Player X turn'
+currentStatus.style.display = 'block'
+    currentStatus.textContent = 'Player X: GO!'
 
     playCell.forEach((move) => {
         move.addEventListener('click', () => {
@@ -48,11 +49,11 @@ startButton.addEventListener('click', function () {
                 if (currentPlayer === 'x') {
                     move.textContent = playerXToken //drops token
                     currentPlayer = 'o' // change player
-                    currentStatus.textContent = 'Player O turn' // displays current player
+                    currentStatus.textContent = "Player O: GO!" // displays current player
                 } else {
                     move.textContent = playerOToken
                     currentPlayer = 'x'
-                    currentStatus.textContent = 'Player X turn'
+                    currentStatus.textContent = "Player X: GO!"
                 }
             }
         })
