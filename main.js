@@ -17,18 +17,37 @@ let currentStatus = document.getElementById('status')
 let currentPlayer = 'x'
 let playerXToken = 'X'
 let playerOToken = 'O'
-
-let win1 = []  /* cells 0, 1, 2 */
-let win2 = []  /* cells 3, 4, 5 */
-let win3 = []  /* cells 6, 7, 8 */
-let win4 = []  /* cells 0, 3, 6 */
-let win5 = []  /* cells 1, 4, 7 */
-let win6 = []  /* cells 2, 5, 8 */
-let win7 = []  /* cells 0, 4, 8 */
-let win8 = []  /* cells 2, 4, 6 */
-
+let winConditions = [
+    win1 = [],  /* cells 0, 1, 2 */
+    win2 = [],  /* cells 3, 4, 5 */
+    win3 = [],  /* cells 6, 7, 8 */
+    win4 = [],  /* cells 0, 3, 6 */
+    win5 = [],  /* cells 1, 4, 7 */
+    win6 = [],  /* cells 2, 5, 8 */
+    win7 = [],  /* cells 0, 4, 8 */
+    win8 = [],  /* cells 2, 4, 6 */
+]
 // Game play logic ********************************
-function checkForWin(player, cell) {
+
+function checkForWin() {
+    winConditions.forEach((win) => {
+        let total1 = (win.reduce(function (arrayTotal, nextNum) {
+            return arrayTotal + nextNum
+        }, 0
+        ))
+        let length1 = (win.length)
+
+        if (length1 === 3 && total1 % 3 === 0) {
+            if (win[0] === 1) {
+                console.log(' X WINS')
+            } else {
+                console.log('O WINS')
+            }
+        }
+    })
+}
+
+function updateArrays(player, cell) {
 
     if (player === 'x') {
         arrayValue = 1
@@ -40,60 +59,53 @@ function checkForWin(player, cell) {
         win1.push(arrayValue)
         win4.push(arrayValue)
         win7.push(arrayValue)
-
-
-
-        let total1 = (win1.reduce(function (arrayTotal, nextNum) {
-            return arrayTotal + nextNum
-        }, 0
-        ))
-        let length1 = (win1.length)
-
-        if (length1 === 3 && total1 % 3 === 0) {
-            if (win1[0] === 1) {
-                console.log(' X WINS')
-            } else {
-                console.log('O WINS')
-            }
-        }
-
-
+        checkForWin()
 
     } else if (cell === 'cell-1') {
         win1.push(arrayValue)
         win5.push(arrayValue)
+        checkForWin()
+
     } else if (cell === 'cell-2') {
         win1.push(arrayValue)
         win6.push(arrayValue)
         win8.push(arrayValue)
+        checkForWin()
+
     } else if (cell === 'cell-3') {
         win2.push(arrayValue)
         win4.push(arrayValue)
+        checkForWin()
+
     } else if (cell === 'cell-4') {
         win2.push(arrayValue)
         win5.push(arrayValue)
         win7.push(arrayValue)
         win8.push(arrayValue)
+        checkForWin()
+
     } else if (cell === 'cell-5') {
         win2.push(arrayValue)
         win6.push(arrayValue)
+        checkForWin()
+
     } else if (cell === 'cell-6') {
         win3.push(arrayValue)
         win4.push(arrayValue)
         win8.push(arrayValue)
+        checkForWin()
+
     } else if (cell === 'cell-7') {
         win3.push(arrayValue)
         win5.push(arrayValue)
+        checkForWin()
+
     } else if (cell === 'cell-8') {
         win3.push(arrayValue)
         win6.push(arrayValue)
         win7.push(arrayValue)
+        checkForWin()
     }
-
-
-
-
-
 
     // console.log('1 - ' + win1)
     // console.log('2 - ' + win2)
@@ -117,22 +129,17 @@ startButton.addEventListener('click', function () {
                 alert('Please select an Empty Cell')
             } else {
                 if (currentPlayer === 'x') {
-                    checkForWin(currentPlayer, move.id)
+                    updateArrays(currentPlayer, move.id)
                     move.textContent = playerXToken //drops token
                     currentPlayer = 'o' // change player
                     currentStatus.textContent = "Player O: GO!" // displays current player
                 } else {
-                    checkForWin(currentPlayer, move.id)
+                    updateArrays(currentPlayer, move.id)
                     move.textContent = playerOToken
                     currentPlayer = 'x'
                     currentStatus.textContent = "Player X: GO!"
                 }
             }
-            // console.log(currentPlayer, move.id)
-
-
-
-
         })
 
     })
@@ -151,35 +158,3 @@ startButton.addEventListener('click', function () {
 //     'c7': 7,
 //     'c8': 8
 // }
-
-    // if (cell0.textContent === cell1.textContent && cell0.textContent === cell2.textContent) {
-    //     currentStatus.textContent = `Player ${cell0.textContent} WINS!`
-    // }
-
-    // if (cell3.textContent === cell4.textContent === cell5.textContent) {
-    //     currentStatus.textContent = `Player ${cell3.textContent} WINS!`
-    // }
-
-    // if (cell6.textContent === cell7.textContent === cell8.textContent) {
-    //     currentStatus.textContent = `Player ${cell6.textContent} WINS!`
-    // }
-
-    // if (cell0.textContent === cell3.textContent === cell6.textContent) {
-    //     currentStatus.textContent = `Player ${cell0.textContent} WINS!`
-    // }
-
-    // if (cell1.textContent === cell4.textContent === cell7.textContent) {
-    //     currentStatus.textContent = `Player ${cell1.textContent} WINS!`
-    // }
-
-    // if (cell2.textContent === cell5.textContent === cell8.textContent) {
-    //     currentStatus.textContent = `Player ${cell2.textContent} WINS!`
-    // }
-
-    // if (cell0.textContent === cell4.textContent === cell8.textContent) {
-    //     currentStatus.textContent = `Player ${cell0.textContent} WINS!`
-    // }
-
-    // if (cell6.textContent === cell4.textContent === cell2.textContent) {
-    //     currentStatus.textContent = `Player ${cell6.textContent} WINS!`
-    // }
