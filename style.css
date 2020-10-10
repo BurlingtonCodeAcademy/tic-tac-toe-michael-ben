@@ -14,20 +14,40 @@ h1 {
    align-items: center;
  }
 
-/* start button */
-#start, #status {
-    font-family: 'Permanent Marker', cursive;
- font-size: 3rem;
-    background:transparent;
-    border:solid .15em #41403E;
-    border-top-left-radius: 255px 15px;
-      border-top-right-radius: 15px 225px;
-      border-bottom-right-radius: 225px 15px;
-      border-bottom-left-radius:15px 255px;
+/* start button & status bar*/
+#start {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3rem;
+  background:transparent;
+  border:solid .15em #41403E;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 225px 15px;
+  border-bottom-left-radius:15px 255px;
 }
- #status {
-     display: none;
-     padding: 0 1rem
+
+#start:hover {
+  cursor: pointer;
+  background-color: #41403E;
+  font-weight: 100;
+  color: aliceblue;
+  
+}
+
+
+
+
+#status {
+  font-family: 'Permanent Marker', cursive;
+ font-size: 3rem;
+  background:transparent;
+  border:solid .15em #41403E;
+  border-top-left-radius: 255px 15px;
+    border-top-right-radius: 15px 225px;
+    border-bottom-right-radius: 225px 15px;
+    border-bottom-left-radius:15px 255px;
+    display: none;
+    padding: 0 1rem
  }
 
 
