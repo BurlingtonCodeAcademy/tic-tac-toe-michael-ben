@@ -11,7 +11,11 @@
 let playCell = Array.from(document.getElementsByClassName('play-Cell'))
 let startButton = document.getElementById('start')
 let currentStatus = document.getElementById('status')
-
+let nameForm = document.getElementById('name-form')
+let xPlayer = document.getElementById('playerX')
+let oPlayer = document.getElementById('playerO')
+let submit = document.getElementById('submit')
+let rows = document.getElementsByClassName = ('row')
 // Global Variables*********************************
 
 let currentPlayer = 'x'
@@ -27,47 +31,59 @@ let winConditions = [
     win7 = [],  /* cells 0, 4, 8 */
     win8 = [],  /* cells 2, 4, 6 */
 ]
+let gameWon = false
 
+// Global capitalize function**********************
+function capitalize(string) {
+    return string[0].toUpperCase() + string.slice(1).toLowerCase().trim()
+}
 
 // Game play logic ********************************
 
+
+function turnOffBoard() {
+
+    console.log(rows)
+    rows.style.pointerEvents = 'none'
+}
+
 function checkForWin() {
-    rowsFull = 0
-    winCode = 0
+    let rowsFull = 0
+
     winConditions.forEach((condition) => {
         if (condition.length === 3) {
-        rowsFull += 1 
+            rowsFull = rowsFull + 1
+
         }
-        console.log('rowsFull = ' + rowsFull)
-        
     })
 
     winConditions.forEach((win) => {
-        
+
         let total1 = (win.reduce(function (arrayTotal, nextNum) {
             return arrayTotal + nextNum
         }, 0
         ))
         let length1 = (win.length)
 
-        if (length1 === 3 && total1 % 3 === 0) {
-            if (win[0] === 1) {
-                console.log(' X WINS')
-                
-               
-            } else if (win[0] === 2) {
-                console.log('O WINS')
-
-            } 
-        } else if (rowsFull === 8) {
-            console.log('DRAW')
-
+        if (rowsFull === 8 && gameWon === false) {
+            console.log(rowsFull)
+            currentStatus.textContent = 'DRAW'
+            gameWon = true
+            turnOffBoard()
         }
 
+        if (length1 === 3 && total1 % 3 === 0) {
+            if (win[0] === 1) {
+                currentStatus.textContent = capitalize(xPlayer.value) + ' WINS'
+                gameWon = true
+                turnOffBoard()
+            } else if (win[0] === 2) {
+                currentStatus.textContent = capitalize(oPlayer.value) + ' WINS'
+                gameWon = true
+                turnOffBoard()
+            }
+        }
     })
-
-
-
 }
 
 function updateArrays(player, cell) {
@@ -139,12 +155,27 @@ function updateArrays(player, cell) {
     // console.log('7 - ' + win7)
     // console.log('8 - ' + win8)
 }
+nameForm.style.display = 'none'
 
 
 startButton.addEventListener('click', function () {
     startButton.style.display = 'none'
     currentStatus.style.display = 'block'
-    currentStatus.textContent = 'Player X: GO!'
+    currentStatus.textContent = 'Enter player names below'
+
+    nameForm.style.display = 'block'
+
+    nameForm.addEventListener('submit', (evt) => {
+        evt.preventDefault()
+        // currentPlayer = xPlayer.value
+        nameForm.style.display = 'none'
+        currentStatus.textContent = capitalize(xPlayer.value) + ': GO!'
+    })
+
+
+
+
+    // currentStatus.textContent = 'Player X: GO!'
 
     playCell.forEach((move) => {
         move.addEventListener('click', () => {
@@ -154,13 +185,17 @@ startButton.addEventListener('click', function () {
                 if (currentPlayer === 'x') {
                     updateArrays(currentPlayer, move.id)
                     move.textContent = playerXToken //drops token
-                    currentPlayer = 'o' // change player
-                    currentStatus.textContent = "Player O: GO!" // displays current player
+                    if (gameWon === false) {
+                        currentPlayer = 'o' // change player
+                        currentStatus.textContent = capitalize(oPlayer.value) + ": GO!" // displays current player
+                    }
                 } else {
                     updateArrays(currentPlayer, move.id)
                     move.textContent = playerOToken
-                    currentPlayer = 'x'
-                    currentStatus.textContent = "Player X: GO!"
+                    if (gameWon === false) {
+                        currentPlayer = 'x'
+                        currentStatus.textContent = capitalize(xPlayer.value) + ": GO!"
+                    }
                 }
             }
         })
