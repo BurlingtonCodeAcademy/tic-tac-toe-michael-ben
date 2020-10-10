@@ -1,13 +1,4 @@
 // DOM Elements*******************************
-// let cell0 = document.getElementById('cell-0')
-// let cell1 = document.getElementById('cell-1')
-// let cell2 = document.getElementById('cell-2')
-// let cell3 = document.getElementById('cell-3')
-// let cell4 = document.getElementById('cell-4')
-// let cell5 = document.getElementById('cell-5')
-// let cell6 = document.getElementById('cell-6')
-// let cell7 = document.getElementById('cell-7')
-// let cell8 = document.getElementById('cell-8')
 let playCell = Array.from(document.getElementsByClassName('play-Cell'))
 let startButton = document.getElementById('start')
 let currentStatus = document.getElementById('status')
@@ -33,52 +24,51 @@ let winConditions = [
 ]
 let gameWon = false
 
-// Global capitalize function**********************
+// Global functions  **********************
 function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase().trim()
 }
 
-// Game play logic ********************************
-
-
 function turnOffBoard() {
-
-    console.log(rows)
-    rows.style.pointerEvents = 'none'
+   playCell.forEach((square) => {
+        square.removeEventListener('click', gamePlay
+          )
+    })
 }
 
 function checkForWin() {
+    // Set counter and check how many win-row arrays are full
     let rowsFull = 0
-
     winConditions.forEach((condition) => {
         if (condition.length === 3) {
             rowsFull = rowsFull + 1
-
         }
     })
 
     winConditions.forEach((win) => {
-
+        // for every win-row array, calculate total of contents and length of array
         let total1 = (win.reduce(function (arrayTotal, nextNum) {
             return arrayTotal + nextNum
         }, 0
         ))
         let length1 = (win.length)
-
+        // if the number of win-row arrays full = 8 and the game has not been won, it is a Draw
         if (rowsFull === 8 && gameWon === false) {
             console.log(rowsFull)
-            currentStatus.textContent = 'DRAW'
+            currentStatus.textContent = 'Draw!'
             gameWon = true
             turnOffBoard()
         }
-
+        // id any soecific win-row array is full and the total is 3 or 6 then check the player code and show who won
         if (length1 === 3 && total1 % 3 === 0) {
             if (win[0] === 1) {
-                currentStatus.textContent = capitalize(xPlayer.value) + ' WINS'
+                console.log(win)
+                currentStatus.textContent = capitalize(xPlayer.value) + ' Wins!'
                 gameWon = true
                 turnOffBoard()
             } else if (win[0] === 2) {
-                currentStatus.textContent = capitalize(oPlayer.value) + ' WINS'
+                console.log(win)
+                currentStatus.textContent = capitalize(oPlayer.value) + ' Wins!'
                 gameWon = true
                 turnOffBoard()
             }
@@ -146,60 +136,51 @@ function updateArrays(player, cell) {
         checkForWin()
     }
 
-    // console.log('1 - ' + win1)
-    // console.log('2 - ' + win2)
-    // console.log('3 - ' + win3)
-    // console.log('4 - ' + win4)
-    // console.log('5 - ' + win5)
-    // console.log('6 - ' + win6)
-    // console.log('7 - ' + win7)
-    // console.log('8 - ' + win8)
 }
-nameForm.style.display = 'none'
 
+function gamePlay(event) {
+
+    if (event.target.textContent !== '') {
+        alert('Please select an Empty Cell')
+    } else {
+        if (currentPlayer === 'x') {
+            updateArrays(currentPlayer, event.target.id)
+            event.target.textContent = playerXToken //drops token
+            if (gameWon === false) {
+                currentPlayer = 'o' // change player
+                currentStatus.textContent = capitalize(oPlayer.value) + ": GO!" // displays current player
+            }
+        } else {
+            updateArrays(currentPlayer, event.target.id)
+            event.target.textContent = playerOToken
+            if (gameWon === false) {
+                currentPlayer = 'x'
+                currentStatus.textContent = capitalize(xPlayer.value) + ": GO!"
+            }
+        }
+    }
+}
+
+
+
+// Game play logic ********************************
+
+nameForm.style.display = 'none'
 
 startButton.addEventListener('click', function () {
     startButton.style.display = 'none'
     currentStatus.style.display = 'block'
     currentStatus.textContent = 'Enter player names below'
-
     nameForm.style.display = 'block'
-
     nameForm.addEventListener('submit', (evt) => {
         evt.preventDefault()
-        // currentPlayer = xPlayer.value
+
         nameForm.style.display = 'none'
-        currentStatus.textContent = capitalize(xPlayer.value) + ': GO!'
+        currentStatus.textContent = capitalize(xPlayer.value) + ': Go!'
     })
 
-
-
-
-    // currentStatus.textContent = 'Player X: GO!'
-
     playCell.forEach((move) => {
-        move.addEventListener('click', () => {
-            if (move.textContent !== '') {
-                alert('Please select an Empty Cell')
-            } else {
-                if (currentPlayer === 'x') {
-                    updateArrays(currentPlayer, move.id)
-                    move.textContent = playerXToken //drops token
-                    if (gameWon === false) {
-                        currentPlayer = 'o' // change player
-                        currentStatus.textContent = capitalize(oPlayer.value) + ": GO!" // displays current player
-                    }
-                } else {
-                    updateArrays(currentPlayer, move.id)
-                    move.textContent = playerOToken
-                    if (gameWon === false) {
-                        currentPlayer = 'x'
-                        currentStatus.textContent = capitalize(xPlayer.value) + ": GO!"
-                    }
-                }
-            }
-        })
-
+        move.addEventListener('click', gamePlay  )
     })
 })
 
