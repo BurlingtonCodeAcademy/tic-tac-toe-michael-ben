@@ -1,13 +1,13 @@
 // DOM Elements*******************************
-let cell0 = document.getElementById('cell-0')
-let cell1 = document.getElementById('cell-1')
-let cell2 = document.getElementById('cell-2')
-let cell3 = document.getElementById('cell-3')
-let cell4 = document.getElementById('cell-4')
-let cell5 = document.getElementById('cell-5')
-let cell6 = document.getElementById('cell-6')
-let cell7 = document.getElementById('cell-7')
-let cell8 = document.getElementById('cell-8')
+// let cell0 = document.getElementById('cell-0')
+// let cell1 = document.getElementById('cell-1')
+// let cell2 = document.getElementById('cell-2')
+// let cell3 = document.getElementById('cell-3')
+// let cell4 = document.getElementById('cell-4')
+// let cell5 = document.getElementById('cell-5')
+// let cell6 = document.getElementById('cell-6')
+// let cell7 = document.getElementById('cell-7')
+// let cell8 = document.getElementById('cell-8')
 let playCell = Array.from(document.getElementsByClassName('play-Cell'))
 let startButton = document.getElementById('start')
 let currentStatus = document.getElementById('status')
@@ -27,10 +27,23 @@ let winConditions = [
     win7 = [],  /* cells 0, 4, 8 */
     win8 = [],  /* cells 2, 4, 6 */
 ]
+
+
 // Game play logic ********************************
 
 function checkForWin() {
+    rowsFull = 0
+    winCode = 0
+    winConditions.forEach((condition) => {
+        if (condition.length === 3) {
+        rowsFull += 1 
+        }
+        console.log('rowsFull = ' + rowsFull)
+        
+    })
+
     winConditions.forEach((win) => {
+        
         let total1 = (win.reduce(function (arrayTotal, nextNum) {
             return arrayTotal + nextNum
         }, 0
@@ -40,11 +53,21 @@ function checkForWin() {
         if (length1 === 3 && total1 % 3 === 0) {
             if (win[0] === 1) {
                 console.log(' X WINS')
-            } else {
+                
+               
+            } else if (win[0] === 2) {
                 console.log('O WINS')
-            }
+
+            } 
+        } else if (rowsFull === 8) {
+            console.log('DRAW')
+
         }
+
     })
+
+
+
 }
 
 function updateArrays(player, cell) {

@@ -31,8 +31,16 @@ h1 {
   background-color: #41403E;
   font-weight: 100;
   color: aliceblue;
-  
 }
+
+#playerX, #playerO {
+  font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  border-style: groove;
+}
+
+
+
 
 
 
