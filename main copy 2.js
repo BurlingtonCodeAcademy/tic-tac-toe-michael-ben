@@ -68,13 +68,13 @@ function checkForWin() {
         if (length1 === 3 && total1 % 3 === 0) {
             console.log({ win })
             if (win[0] === 1) {
-                console.log('win')
+                
                 console.log('player x ' + win)
                 currentStatus.textContent = capitalize(xPlayer.value) + ' Wins!'
                 gameWon = true
                 turnOffBoard()
-            } else if ('player o ' + win[0] === 2) {
-                console.log({ win })
+            } else if (win[0] === 2) {
+                
                 currentStatus.textContent = capitalize(oPlayer.value) + ' Wins!'
                 gameWon = true
                 turnOffBoard()
