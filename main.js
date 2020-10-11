@@ -297,7 +297,7 @@ function playOn() {
         evt.preventDefault()
         nameForm.style.display = 'none'
         currentStatus.textContent = capitalize(xPlayer.value) + ': Go!'
-        // timer = setInterval(countUp, 1000)
+        timer = setInterval(countUp, 1000)
         timeNow.style.display = 'block'
 
     })
