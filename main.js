@@ -262,6 +262,8 @@ function nameChooser() {
     if (gameVersion === 'computer') {
         oPlayer.value = 'computer'
         xPlayer.value = 'Player X'
+        nameForm.style.display = 'none'
+        currentStatus.textContent = capitalize(xPlayer.value) + ': Go!'
     }
     timer = setInterval(countUp, 1000)
     timeNow.style.display = 'block'
