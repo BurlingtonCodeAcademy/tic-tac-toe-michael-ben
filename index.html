@@ -35,20 +35,28 @@
 
         <br><br>
 
-    <button id='start'>Start Game</button>
-    <div id='status'></div>
-    <br><br><br>
-    <form id = 'name-form'>
-        <input id='playerX' type='text' placeholder="Player - X">
-        <input id='playerO' type='text' placeholder="Player - O">
-        <input id='submit' type='submit' value='Submit'>
-    </form>
-    <div id='time-now'>Elapsed time: 0 seconds</div>
+       
+
+        <div id='gameChoice'>
+            <input type='radio' name='choice' id='vs-player'> Player vs. Player
+            <input type='radio' name='choice' id='vs-computer'> Player vs. Computer
+        </div>
+        <br>
+        <button id='start'>Start Game</button>
+
+        <div id='status'></div>
+        <br><br><br>
+        <form id='name-form'>
+            <input id='playerX' type='text' placeholder="Player - X">
+            <input id='playerO' type='text' placeholder="Player - O">
+            <input id='submit' type='submit' value='Submit'>
+        </form>
+        <div id='time-now'>Elapsed time: 0 seconds</div>
 
 
-    
 
-    <script src='./main.js'></script>
+
+        <script src='./main.js'></script>
 
 </body>
 

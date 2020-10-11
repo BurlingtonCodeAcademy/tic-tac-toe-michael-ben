@@ -18,8 +18,12 @@ let oPlayer = document.getElementById('playerO')
 let submit = document.getElementById('submit')
 let rows = document.getElementsByClassName('row')
 let timeNow = document.getElementById('time-now')
+let gameChoice = document.getElementById('gameChoice')
+let vsPlayer = document.getElementById('vs-player')
+let vsComputer = document.getElementById('vs-computer')
 
 // Global Variables*********************************
+let gameVersion = ''
 let timer;
 let interval = 0
 let currentPlayer = 'x'
@@ -35,6 +39,7 @@ let winConditions = [
     win7 = [],  /* cells 0, 4, 8 */
     win8 = [],  /* cells 2, 4, 6 */
 ]
+let optionArray = []
 let gameWon = false
 
 // Global functions  **********************
@@ -205,11 +210,20 @@ function updateArrays(player, cell) {
         win7.push(arrayValue)
         checkForWin()
     }
+}
 
+function computerPlays() {
+    optionArray = []
+    playCell.forEach((option) => {
+        if (option.textContent === '') {
+            optionArray.push(option)
+        }
+    })
+    let compMove = Math.floor(Math.random() * optionArray.length)
+    optionArray[compMove].click()
 }
 
 function gamePlay(event) {
-
     if (event.target.textContent !== '') {
         alert('Please select an Empty Cell')
     } else {
@@ -219,6 +233,7 @@ function gamePlay(event) {
             if (gameWon === false) {
                 currentPlayer = 'o' // change player
                 currentStatus.textContent = capitalize(oPlayer.value) + ": GO!" // displays current player
+                computerPlays()
             }
         } else {
             updateArrays(currentPlayer, event.target.id)
@@ -231,26 +246,49 @@ function gamePlay(event) {
     }
 }
 
+function gameChooser() {
+    if (vsPlayer.checked === true) {
+        gameVersion = 'player'
+    } else if (vsComputer.checked === true) {
+        gameVersion = 'computer'
+    } else {
+        alert('Please select a game format.')
+    }
+}
 
+function nameChooser() {
+    if (gameVersion === 'computer') {
+        oPlayer.value = 'computer'
+        oPlayer.inputMode = 'none' // need to deny input
+    }
+}
 
 // Game play logic ********************************
 
 nameForm.style.display = 'none'
 timeNow.style.display = 'none'
+
 startButton.addEventListener('click', function () {
+    gameChooser()
+    gameChoice.style.display = 'none'
     startButton.style.display = 'none'
     currentStatus.style.display = 'block'
-    
-    currentStatus.textContent = 'Enter player names below'
+
+
+    currentStatus.textContent = 'Enter player names:'
     nameForm.style.display = 'block'
+    nameChooser()
+
+
+
+
     nameForm.addEventListener('submit', (evt) => {
         evt.preventDefault()
-
         nameForm.style.display = 'none'
         currentStatus.textContent = capitalize(xPlayer.value) + ': Go!'
         timer = setInterval(countUp, 1000)
         timeNow.style.display = 'block'
-        
+
     })
 
     playCell.forEach((move) => {
