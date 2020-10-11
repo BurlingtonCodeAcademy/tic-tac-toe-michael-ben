@@ -48,37 +48,53 @@ function calcRowsFull() {
 }
 
 
+
+let winArray = (event) => {
+    console.log('event is ' + event)
+    let total1 = (event.target.reduce(function (arrayTotal, nextNum) {
+        return arrayTotal + nextNum
+    }, 0
+    ))
+
+    if (win.length === 3 && total1 % 3 === 0) {
+        console.log(winArray)
+        return winArray
+    }
+}
+
+
+
 function checkForWin() {
     calcRowsFull()
-
+    // for every win-row array, calculate total of contents and length of array
     winConditions.forEach((win) => {
-        // for every win-row array, calculate total of contents and length of array
-        let total1 = (win.reduce(function (arrayTotal, nextNum) {
-            return arrayTotal + nextNum
-        }, 0
-        ))
-        
+        console.log('win is ' + win.id)
+        winArray(win.id)
+
         // if the number of win-row arrays full = 8 and the game has not been won, it is a Draw
         if (rowsFull === 8 && gameWon === false) {
             currentStatus.textContent = 'Draw!'
             gameWon = true
             turnOffBoard()
         }
+
+
+
         // id any soecific win-row array is full and the total is 3 or 6 then check the player code and show who won
-        if (win.length === 3 && total1 % 3 === 0) {
-            console.log({ win })
-            if (win[0] === 1) {
-                
-                console.log('player x ' + win)
-                currentStatus.textContent = capitalize(xPlayer.value) + ' Wins!'
-                gameWon = true
-                turnOffBoard()
-            } else if (win[0] === 2) {
-                
-                currentStatus.textContent = capitalize(oPlayer.value) + ' Wins!'
-                gameWon = true
-                turnOffBoard()
-            }
+
+        if (winConditions.findIndex(winArray)) {
+            // console.log({winArray})
+
+            // if (win[0] === 1) {
+            //     currentStatus.textContent = capitalize(xPlayer.value) + ' Wins!'
+            //     gameWon = true
+            //     turnOffBoard()
+            // } else if (win[0] === 2) {
+
+            //     currentStatus.textContent = capitalize(oPlayer.value) + ' Wins!'
+            //     gameWon = true
+            //     turnOffBoard()
+            // }
         }
     })
 }
