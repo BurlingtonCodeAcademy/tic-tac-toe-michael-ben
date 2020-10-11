@@ -37,13 +37,17 @@ h1 {
   font-family: 'Permanent Marker', cursive;
   text-align: center;
   border-style: groove;
+  font-size: 1rem
+  
 }
 
-
-
-
-
-
+#submit {
+    font-family: 'Permanent Marker', cursive;
+  text-align: center;
+  border-style: groove;
+  font-size: 1rem
+  
+}
 
 #status {
   font-family: 'Permanent Marker', cursive;
@@ -56,6 +60,11 @@ h1 {
     border-bottom-left-radius:15px 255px;
     display: none;
     padding: 0 1rem
+ }
+
+ #time-now {
+    font-family: 'Permanent Marker', cursive;
+     font-size: 2rem
  }
 
 

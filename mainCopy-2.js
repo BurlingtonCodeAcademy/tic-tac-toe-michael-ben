@@ -68,8 +68,9 @@ function checkForWin() {
     calcRowsFull()
     // for every win-row array, calculate total of contents and length of array
     winConditions.forEach((win) => {
-        console.log('win is ' + win.id)
-        winArray(win.id)
+        console.log(winConditions)
+        console.log('win is ' + (win))
+        // winArray(win)
 
         // if the number of win-row arrays full = 8 and the game has not been won, it is a Draw
         if (rowsFull === 8 && gameWon === false) {
@@ -82,7 +83,7 @@ function checkForWin() {
 
         // id any soecific win-row array is full and the total is 3 or 6 then check the player code and show who won
 
-        if (winConditions.findIndex(winArray)) {
+        if (winConditions.findIndex(win)) {
             // console.log({winArray})
 
             // if (win[0] === 1) {

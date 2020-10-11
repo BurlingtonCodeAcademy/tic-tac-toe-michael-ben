@@ -1,4 +1,14 @@
 // DOM Elements*******************************
+let cell0 = document.getElementById('cell-0')
+let cell1 = document.getElementById('cell-1')
+let cell2 = document.getElementById('cell-2')
+let cell3 = document.getElementById('cell-3')
+let cell4 = document.getElementById('cell-4')
+let cell5 = document.getElementById('cell-5')
+let cell6 = document.getElementById('cell-6')
+let cell7 = document.getElementById('cell-7')
+let cell8 = document.getElementById('cell-8')
+
 let playCell = Array.from(document.getElementsByClassName('play-Cell'))
 let startButton = document.getElementById('start')
 let currentStatus = document.getElementById('status')
@@ -6,9 +16,12 @@ let nameForm = document.getElementById('name-form')
 let xPlayer = document.getElementById('playerX')
 let oPlayer = document.getElementById('playerO')
 let submit = document.getElementById('submit')
-let rows = document.getElementsByClassName = ('row')
-// Global Variables*********************************
+let rows = document.getElementsByClassName('row')
+let timeNow = document.getElementById('time-now')
 
+// Global Variables*********************************
+let timer;
+let interval = 0
 let currentPlayer = 'x'
 let playerXToken = 'X'
 let playerOToken = 'O'
@@ -25,25 +38,79 @@ let winConditions = [
 let gameWon = false
 
 // Global functions  **********************
+
+function highlightWinnerRow(index) {
+    if (index == 0) {
+        cell0.style.backgroundColor = 'yellow'
+        cell1.style.backgroundColor = 'yellow'
+        cell2.style.backgroundColor = 'yellow'
+    }
+    if (index == 1) {
+        cell3.style.backgroundColor = 'yellow'
+        cell4.style.backgroundColor = 'yellow'
+        cell5.style.backgroundColor = 'yellow'
+    }
+    if (index == 2) {
+        cell6.style.backgroundColor = 'yellow'
+        cell7.style.backgroundColor = 'yellow'
+        cell8.style.backgroundColor = 'yellow'
+    }
+    if (index == 3) {
+        cell0.style.backgroundColor = 'yellow'
+        cell3.style.backgroundColor = 'yellow'
+        cell6.style.backgroundColor = 'yellow'
+    }
+    if (index == 4) {
+        cell1.style.backgroundColor = 'yellow'
+        cell4.style.backgroundColor = 'yellow'
+        cell7.style.backgroundColor = 'yellow'
+    }
+    if (index == 5) {
+        cell2.style.backgroundColor = 'yellow'
+        cell5.style.backgroundColor = 'yellow'
+        cell8.style.backgroundColor = 'yellow'
+    }
+    if (index == 6) {
+        cell0.style.backgroundColor = 'yellow'
+        cell4.style.backgroundColor = 'yellow'
+        cell8.style.backgroundColor = 'yellow'
+    }
+    if (index == 7) {
+        cell6.style.backgroundColor = 'yellow'
+        cell4.style.backgroundColor = 'yellow'
+        cell2.style.backgroundColor = 'yellow'
+    }
+}
+
 function capitalize(string) {
     return string[0].toUpperCase() + string.slice(1).toLowerCase().trim()
 }
 
+function countUp() {
+    interval += 1
+    timeNow.textContent = 'Elapsed time: ' + interval + ' seconds'
+    console.log(interval)
+}
+
 function turnOffBoard() {
-   playCell.forEach((square) => {
+    playCell.forEach((square) => {
         square.removeEventListener('click', gamePlay
-          )
+        )
     })
 }
 
-function checkForWin() {
+function calcRowsFull() {
     // Set counter and check how many win-row arrays are full
-    let rowsFull = 0
+    rowsFull = 0
     winConditions.forEach((condition) => {
         if (condition.length === 3) {
             rowsFull = rowsFull + 1
         }
     })
+}
+
+function checkForWin() {
+    calcRowsFull()
 
     winConditions.forEach((win) => {
         // for every win-row array, calculate total of contents and length of array
@@ -61,13 +128,16 @@ function checkForWin() {
         }
         // id any soecific win-row array is full and the total is 3 or 6 then check the player code and show who won
         if (length1 === 3 && total1 % 3 === 0) {
+            let wIndex = winConditions.indexOf(win)
+            highlightWinnerRow(wIndex)
+            console.log(wIndex)
             if (win[0] === 1) {
-                console.log(win)
+                clearInterval(timer)
                 currentStatus.textContent = capitalize(xPlayer.value) + ' Wins!'
                 gameWon = true
                 turnOffBoard()
             } else if (win[0] === 2) {
-                console.log(win)
+                clearInterval(timer)
                 currentStatus.textContent = capitalize(oPlayer.value) + ' Wins!'
                 gameWon = true
                 turnOffBoard()
@@ -166,10 +236,11 @@ function gamePlay(event) {
 // Game play logic ********************************
 
 nameForm.style.display = 'none'
-
+timeNow.style.display = 'none'
 startButton.addEventListener('click', function () {
     startButton.style.display = 'none'
     currentStatus.style.display = 'block'
+    
     currentStatus.textContent = 'Enter player names below'
     nameForm.style.display = 'block'
     nameForm.addEventListener('submit', (evt) => {
@@ -177,11 +248,15 @@ startButton.addEventListener('click', function () {
 
         nameForm.style.display = 'none'
         currentStatus.textContent = capitalize(xPlayer.value) + ': Go!'
+        timer = setInterval(countUp, 1000)
+        timeNow.style.display = 'block'
+        
     })
 
     playCell.forEach((move) => {
-        move.addEventListener('click', gamePlay  )
+        move.addEventListener('click', gamePlay)
     })
+
 })
 
 
