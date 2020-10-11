@@ -126,7 +126,7 @@ function checkForWin() {
         let length1 = (win.length)
         // if the number of win-row arrays full = 8 and the game has not been won, it is a Draw
         if (rowsFull === 8 && gameWon === false) {
-            console.log(rowsFull)
+            clearInterval(timer)
             currentStatus.textContent = 'Draw!'
             gameWon = true
             turnOffBoard()
@@ -233,8 +233,11 @@ function gamePlay(event) {
             if (gameWon === false) {
                 currentPlayer = 'o' // change player
                 currentStatus.textContent = capitalize(oPlayer.value) + ": GO!" // displays current player
+            }
+            if (oPlayer.value === 'computer') {
                 computerPlays()
             }
+
         } else {
             updateArrays(currentPlayer, event.target.id)
             event.target.textContent = playerOToken
@@ -246,13 +249,18 @@ function gamePlay(event) {
     }
 }
 
+
+
 function gameChooser() {
     if (vsPlayer.checked === true) {
         gameVersion = 'player'
+        playOn()
     } else if (vsComputer.checked === true) {
         gameVersion = 'computer'
+        playOn()
     } else {
         alert('Please select a game format.')
+
     }
 }
 
@@ -270,6 +278,9 @@ timeNow.style.display = 'none'
 
 startButton.addEventListener('click', function () {
     gameChooser()
+})
+
+function playOn() {
     gameChoice.style.display = 'none'
     startButton.style.display = 'none'
     currentStatus.style.display = 'block'
@@ -286,7 +297,7 @@ startButton.addEventListener('click', function () {
         evt.preventDefault()
         nameForm.style.display = 'none'
         currentStatus.textContent = capitalize(xPlayer.value) + ': Go!'
-        timer = setInterval(countUp, 1000)
+        // timer = setInterval(countUp, 1000)
         timeNow.style.display = 'block'
 
     })
@@ -295,7 +306,7 @@ startButton.addEventListener('click', function () {
         move.addEventListener('click', gamePlay)
     })
 
-})
+}
 
 
 // let moves = ['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8']
