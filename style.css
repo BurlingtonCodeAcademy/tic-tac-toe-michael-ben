@@ -1,4 +1,4 @@
-/* Global styles************ */
+/* Global styles************************************** */
 
 /* titles */
 h1 {
@@ -7,14 +7,60 @@ h1 {
  font-size: 3rem;
 }
  
-/* board as a whole */
+/* board as a whole ************************/
 #board {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
- }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-/* start button & status bar*/
+ #cell-0, #cell-3, #cell-6 {
+  border-right: .5rem solid black;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 10px 225px;
+  border-bottom-left-radius: 225px 10px;
+}
+
+#cell-1, #cell-4, #cell-7 {
+  border-right: .5rem solid black;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 10px 225px;
+  border-bottom-left-radius: 225px 10px;
+}
+
+#cell-0, #cell-1, #cell-2 {
+  border-bottom: .5rem solid black;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 225px 10px;
+  border-bottom-left-radius: 225px 10px;
+}
+
+#cell-3, #cell-4, #cell-5 {
+  border-bottom: .5rem solid black;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 225px 10px;
+  border-bottom-left-radius: 225px 10px;
+}
+
+.row {
+  display: flex;
+}
+
+.cell {
+  width: 7rem;
+  height: 7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 4rem;
+}
+
+/* start button, status bar and time-keeper disaplys ********************/
 #start {
   font-family: 'Permanent Marker', cursive;
   font-size: 3rem;
@@ -33,23 +79,27 @@ h1 {
   color: aliceblue;
 }
 
-#playerX, #playerO, #gameChoice{
+#status {
   font-family: 'Permanent Marker', cursive;
-  text-align: center;
-    font-size: 1rem;
-    border:solid .15em #41403E;
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    border-bottom-right-radius: 225px 15px;
-    border-bottom-left-radius:15px 255px;
+  font-size: 3rem;
+  background:transparent;
+  border:solid .15em #41403E;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  border-bottom-right-radius: 225px 15px;
+  border-bottom-left-radius:15px 255px;
+  display: none;
+  padding: 0 1rem
 }
 
-#name-form {
-    align-self: auto;
+ #time-now {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2rem
 }
 
-#submit {
-    font-family: 'Permanent Marker', cursive;
+/* player tokens and form styling ****************/
+#playerX, #playerO, #gameChoice, #submit{
+  font-family: 'Permanent Marker', cursive;
   text-align: center;
   font-size: 1rem;
   border:solid .15em #41403E;
@@ -58,78 +108,3 @@ h1 {
   border-bottom-right-radius: 225px 15px;
   border-bottom-left-radius:15px 255px;
 }
-
-#status {
-  font-family: 'Permanent Marker', cursive;
- font-size: 3rem;
-  background:transparent;
-  border:solid .15em #41403E;
-  border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    border-bottom-right-radius: 225px 15px;
-    border-bottom-left-radius:15px 255px;
-    display: none;
-    padding: 0 1rem
- }
-
- #time-now {
-    font-family: 'Permanent Marker', cursive;
-     font-size: 2rem
- }
-
-
- /* cell styling */
- .row {
-    display: flex;
-}
-
-.cell {
-    width: 7rem;
-    height: 7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 4rem;
-}
-
-#row-2 {
-        width: auto;
-}
-
-#row-3 {
-    width: auto;
-}
-
-#cell-0, #cell-3, #cell-6 {
-    border-right: .5rem solid black;
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    border-bottom-right-radius: 10px 225px;
-      border-bottom-left-radius: 225px 10px;
-}
-
-#cell-1, #cell-4, #cell-7 {
-    border-right: .5rem solid black;
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    border-bottom-right-radius: 10px 225px;
-      border-bottom-left-radius: 225px 10px;
-}
-
-#cell-0, #cell-1, #cell-2 {
-    border-bottom: .5rem solid black;
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    border-bottom-right-radius: 225px 10px;
-      border-bottom-left-radius: 225px 10px;
-}
-
-#cell-3, #cell-4, #cell-5 {
-    border-bottom: .5rem solid black;
-    border-top-left-radius: 255px 15px;
-    border-top-right-radius: 15px 225px;
-    border-bottom-right-radius: 225px 10px;
-      border-bottom-left-radius: 225px 10px;
-}
-
