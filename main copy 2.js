@@ -57,7 +57,7 @@ function checkForWin() {
             return arrayTotal + nextNum
         }, 0
         ))
-        let length1 = (win.length)
+        
         // if the number of win-row arrays full = 8 and the game has not been won, it is a Draw
         if (rowsFull === 8 && gameWon === false) {
             currentStatus.textContent = 'Draw!'
@@ -65,7 +65,7 @@ function checkForWin() {
             turnOffBoard()
         }
         // id any soecific win-row array is full and the total is 3 or 6 then check the player code and show who won
-        if (length1 === 3 && total1 % 3 === 0) {
+        if (win.length === 3 && total1 % 3 === 0) {
             console.log({ win })
             if (win[0] === 1) {
                 
