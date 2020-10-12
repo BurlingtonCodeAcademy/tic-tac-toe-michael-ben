@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link href='./style.css' rel='stylesheet' />
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <h1>Tic Tac Toe!</h1>
-  <div id='board'>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-    <div class='cell'></div>
-  </div>
-  <button id='start'>Start Game</button>
+    <!-- Game header -->
+    <h1>Tic Tac Toe!</h1>
+
+    <div id='board'>
+        <!--  game 'board' consists of 3 rows of 3 cells each -->
+        <div id='row-1' class='row'>
+            <div class='cell play-Cell' id='cell-0'></div>
+            <div class='cell play-Cell' id='cell-1'></div>
+            <div class='cell play-Cell' id='cell-2'></div>
+        </div>
+
+        <div id='row-2' class='row'>
+            <div class='cell play-Cell' id='cell-3'></div>
+            <div class='cell play-Cell' id='cell-4'></div>
+            <div class='cell play-Cell' id='cell-5'></div>
+        </div>
+
+        <div id='row-3' class='row'>
+            <div class='cell play-Cell' id='cell-6'></div>
+            <div class='cell play-Cell' id='cell-7'></div>
+            <div class='cell play-Cell' id='cell-8'></div>
+        </div>
+
+        <br><br>
+        <!-- game elements that are displayed or hidden based on game play location -->
+        <div id='gameChoice'>
+            <input type='radio' name='choice' id='vs-player'> Player vs. Player
+            <input type='radio' name='choice' id='vs-computer'> Player vs. Computer
+        </div>
+        <br>
+        <button id='start'>Start Game</button>
+        <div id='status'></div>
+        <br><br><br>
+        <form id='name-form'>
+            <input id='playerX' type='text' placeholder="Player - X">
+            <input id='playerO' type='text' placeholder="Player - O">
+            <input id='submit' type='submit' value='Submit'>
+        </form>
+        <div id='time-now'>Elapsed time: 0 seconds</div>
+
+        <script src='./main.js'></script>
+
 </body>
+
 </html>
